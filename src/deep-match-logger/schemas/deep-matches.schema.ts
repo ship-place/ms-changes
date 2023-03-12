@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { ChangesAction } from '../enums/changes-action.enum';
 
 export type DeepMatchesDocument = HydratedDocument<DeepMatches>;
 
@@ -10,6 +11,9 @@ export class DeepMatches {
 
   @Prop({ type: Date, required: true })
   timestamp: Date;
+
+  @Prop({ type: String, default: ChangesAction.UNKNOWN })
+  action: ChangesAction;
 
   @Prop()
   object_id: number;
